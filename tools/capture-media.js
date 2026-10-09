@@ -92,7 +92,9 @@ async function screenshots(browser, url, beforeUrl) {
   await skipIntroAndSignUp(page);
   await tab(page, 'Me');
   await pause(page, 400);
-  await page.getByRole('button', { name: /Create your account/ }).scrollIntoViewIfNeeded();
+  // scrollIntoViewIfNeeded is a no-op here because the row counts as visible
+  // behind the bottom nav, so centre it explicitly.
+  await page.getByRole('button', { name: /Create your account/ }).evaluate((el) => el.scrollIntoView({ block: 'center' }));
   await pause(page, 400);
   await shot(page, 'after-05-me-signup-later');
   await ctx.close();
