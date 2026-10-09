@@ -16186,6 +16186,9 @@ function Wt(e) {
       );
   }, [e]);
 }
+// Chats float as a card inset from the screen edges on phones instead of
+// covering the whole screen. Kept literal so Tailwind can see the classes.
+var chatWindowInset = `max-md:inset-x-[max(4%,calc(50%-280px))] max-md:top-[calc(var(--sat)+5dvh)] max-md:bottom-[calc(var(--sab)+2.5dvh)] max-md:rounded-[32px]`;
 var Gt = ({
     open: e,
     onClose: t,
@@ -16215,7 +16218,7 @@ var Gt = ({
               onClick: t,
             }),
             (0, F.jsxs)(`div`, {
-              className: `absolute bg-white flex flex-col overflow-hidden shadow-2xl animate-slide-up ${r === `full` ? `inset-0 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-[min(620px,calc(100vw-48px))] md:h-[min(880px,calc(100dvh-48px))] md:rounded-[36px]` : `inset-x-0 bottom-0 max-h-[92dvh] rounded-t-[32px] md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-[min(560px,calc(100vw-48px))] md:max-h-[min(860px,calc(100dvh-48px))] md:rounded-[32px]`} ${i}`,
+              className: `absolute bg-white flex flex-col overflow-hidden shadow-2xl animate-slide-up ${r === `full` ? `inset-0 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-[min(620px,calc(100vw-48px))] md:h-[min(880px,calc(100dvh-48px))] md:rounded-[36px]` : r === `chat` ? `${chatWindowInset} md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-[min(620px,calc(100vw-48px))] md:h-[min(880px,calc(100dvh-48px))] md:rounded-[36px]` : `inset-x-0 bottom-0 max-h-[92dvh] rounded-t-[32px] md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-[min(560px,calc(100vw-48px))] md:max-h-[min(860px,calc(100dvh-48px))] md:rounded-[32px]`} ${i}`,
               children: [
                 r === `bottom` &&
                   (0, F.jsx)(`div`, {
@@ -19020,7 +19023,7 @@ var Gt = ({
             className: `flex flex-col h-full bg-paper md:bg-white md:rounded-[32px] overflow-hidden`,
             children: [
               (0, F.jsx)(`div`, {
-                className: `pt-safe md:pt-0 bg-white shrink-0 border-b border-line`,
+                className: `bg-white shrink-0 border-b border-line`,
                 children: (0, F.jsxs)(`div`, {
                   className: `flex items-center gap-3 px-4 h-[76px]`,
                   children: [
@@ -19065,7 +19068,7 @@ var Gt = ({
                 }),
               }),
               (0, F.jsxs)(`div`, {
-                className: `flex-1 overflow-y-auto px-4 py-4 space-y-3`,
+                className: `flex-1 overflow-y-auto px-[6%] py-4 space-y-3`,
                 children: [
                   u.listingTitle &&
                     (0, F.jsxs)(`div`, {
@@ -19138,10 +19141,10 @@ var Gt = ({
                 ],
               }),
               (0, F.jsxs)(`div`, {
-                className: `shrink-0 bg-white border-t border-line pb-[calc(var(--sab)+10px)] md:pb-3`,
+                className: `shrink-0 bg-white border-t border-line pb-4`,
                 children: [
                   (0, F.jsx)(`div`, {
-                    className: `flex gap-2 overflow-x-auto no-scrollbar px-4 pt-3`,
+                    className: `flex gap-2 overflow-x-auto no-scrollbar px-[6%] pt-3`,
                     children: Sn.map((e) =>
                       (0, F.jsx)(
                         `button`,
@@ -19157,14 +19160,14 @@ var Gt = ({
                   }),
                   (0, F.jsxs)(`form`, {
                     onSubmit: d,
-                    className: `flex items-center gap-2 px-4 pt-3`,
+                    className: `flex items-center justify-center gap-2.5 w-full max-w-2xl mx-auto px-[6%] pt-3`,
                     children: [
                       (0, F.jsx)(`input`, {
                         type: `text`,
                         value: s,
                         onChange: (e) => c(e.target.value),
                         placeholder: `Message, suggest a meetup or negotiate…`,
-                        className: `flex-1 min-w-0 h-12 px-5 rounded-full bg-mist text-[14.5px] placeholder:text-muted focus:outline-none focus:bg-white focus:ring-2 focus:ring-ink/10`,
+                        className: `flex-1 min-w-0 h-12 px-6 rounded-full bg-mist text-[14.5px] placeholder:text-muted focus:outline-none focus:bg-white focus:ring-2 focus:ring-ink/10`,
                         "aria-label": `Type a message`,
                       }),
                       (0, F.jsx)(`button`, {
@@ -19201,7 +19204,7 @@ var Gt = ({
                   children: [
                     f,
                     (0, F.jsx)(`div`, {
-                      className: `hidden md:block h-[calc(100dvh-230px)] min-h-[520px]`,
+                      className: `hidden md:block min-w-0 h-[calc(100dvh-230px)] min-h-[520px]`,
                       children: p,
                     }),
                   ],
@@ -19209,9 +19212,21 @@ var Gt = ({
         }),
         r &&
           p &&
-          (0, F.jsx)(`div`, {
-            className: `md:hidden fixed inset-0 z-40 animate-slide-up`,
-            children: p,
+          (0, F.jsxs)(`div`, {
+            className: `md:hidden fixed inset-0 z-40`,
+            role: `dialog`,
+            "aria-modal": `true`,
+            "aria-label": `Chat with ${u.otherUserName}`,
+            children: [
+              (0, F.jsx)(`div`, {
+                className: `absolute inset-0 bg-ink/40 backdrop-blur-[2px] animate-fade-in`,
+                onClick: i,
+              }),
+              (0, F.jsx)(`div`, {
+                className: `absolute ${chatWindowInset} overflow-hidden shadow-2xl animate-slide-up`,
+                children: p,
+              }),
+            ],
           }),
       ],
     });
@@ -20582,10 +20597,10 @@ var Rn = [
       open: e,
       onClose: t,
       label: `VarsityBot campus assistant`,
-      variant: `full`,
+      variant: `chat`,
       children: [
         (0, F.jsxs)(`div`, {
-          className: `pt-safe shrink-0 bg-brand md:rounded-t-[36px]`,
+          className: `shrink-0 bg-brand`,
           children: [
             (0, F.jsxs)(`div`, {
               className: `flex items-center gap-3 px-4 h-[76px]`,
@@ -20644,7 +20659,7 @@ var Rn = [
           ],
         }),
         (0, F.jsxs)(`div`, {
-          className: `flex-1 overflow-y-auto bg-paper px-4 py-4 space-y-3`,
+          className: `flex-1 overflow-y-auto bg-paper px-[6%] py-4 space-y-3`,
           "aria-live": `polite`,
           children: [
             l.map((e) =>
@@ -20706,10 +20721,10 @@ var Rn = [
           ],
         }),
         (0, F.jsxs)(`div`, {
-          className: `shrink-0 bg-white border-t border-line pb-[calc(var(--sab)+10px)] md:pb-4`,
+          className: `shrink-0 bg-white border-t border-line pb-4`,
           children: [
             (0, F.jsx)(`div`, {
-              className: `flex gap-2 overflow-x-auto no-scrollbar px-4 pt-3`,
+              className: `flex gap-2 overflow-x-auto no-scrollbar px-[6%] pt-3`,
               children: Bn.map((e) =>
                 (0, F.jsx)(
                   `button`,
@@ -20728,14 +20743,14 @@ var Rn = [
               onSubmit: (e) => {
                 (e.preventDefault(), p());
               },
-              className: `flex items-center gap-2 px-4 pt-3`,
+              className: `flex items-center justify-center gap-2.5 w-full max-w-2xl mx-auto px-[6%] pt-3`,
               children: [
                 (0, F.jsx)(`input`, {
                   type: `text`,
                   value: a,
                   onChange: (e) => o(e.target.value),
                   placeholder: `Ask in ${r}…`,
-                  className: `flex-1 min-w-0 h-12 px-5 rounded-full bg-mist text-[14.5px] placeholder:text-muted focus:outline-none focus:bg-white focus:ring-2 focus:ring-ink/10`,
+                  className: `flex-1 min-w-0 h-12 px-6 rounded-full bg-mist text-[14.5px] placeholder:text-muted focus:outline-none focus:bg-white focus:ring-2 focus:ring-ink/10`,
                   "aria-label": `Message VarsityBot`,
                 }),
                 (0, F.jsx)(`button`, {
@@ -20949,9 +20964,22 @@ var Rn = [
     onOpenBot: s,
     onOpenEscrowInfo: c,
     onReplayIntro: l,
+    account: f,
+    onOpenSignUp: p,
+    onSignOut: m,
   }) => {
     let u = Ye[e],
       d = [
+        ...(f
+          ? []
+          : [
+              {
+                icon: Pe,
+                label: `Create your account`,
+                hint: `Google · Facebook`,
+                onClick: p,
+              },
+            ]),
         {
           icon: ge,
           label: `My wishlist`,
@@ -20967,6 +20995,16 @@ var Rn = [
         { icon: De, label: `Ask VarsityBot`, hint: `11 languages`, onClick: s },
         { icon: le, label: `How Escrow works`, hint: ``, onClick: c },
         { icon: Ce, label: `Replay the intro`, hint: ``, onClick: l },
+        ...(f
+          ? [
+              {
+                icon: Pe,
+                label: `Sign out`,
+                hint: providerLabels[f.provider],
+                onClick: m,
+              },
+            ]
+          : []),
       ];
     return (0, F.jsxs)(`div`, {
       children: [
@@ -20987,7 +21025,7 @@ var Rn = [
                     children: [
                       (0, F.jsx)(`h1`, {
                         className: `font-display text-[28px] leading-tight font-semibold`,
-                        children: `Hey, comrade!`,
+                        children: `Hey, ${f?.name?.split(` `)[0] || `comrade`}!`,
                       }),
                       (0, F.jsxs)(`p`, {
                         className: `text-[13.5px] text-ink/70 flex items-center gap-1 mt-0.5`,
@@ -21179,6 +21217,223 @@ var Rn = [
     }
   },
   Jn = (e) => e.replace(/\D/g, ``);
+var accountKey = `vm_account_v1`,
+  readAccount = () => {
+    try {
+      return JSON.parse(localStorage.getItem(accountKey));
+    } catch {
+      return null;
+    }
+  },
+  writeAccount = (e) => {
+    try {
+      e
+        ? localStorage.setItem(accountKey, JSON.stringify(e))
+        : localStorage.removeItem(accountKey);
+    } catch {}
+  },
+  providerLabels = { google: `Google`, facebook: `Facebook` },
+  // Credentials for @capgo/capacitor-social-login. While these are blank (or
+  // the plugin isn't in the native build) the buttons run in demo mode.
+  socialLoginConfig = {
+    google: { webClientId: `` },
+    facebook: { appId: ``, clientToken: `` },
+  },
+  SocialLogin = at(`SocialLogin`);
+async function signUpWith(provider) {
+  let config = socialLoginConfig[provider];
+  if (
+    wt() &&
+    it.isPluginAvailable(`SocialLogin`) &&
+    Object.values(config).every(Boolean)
+  ) {
+    await SocialLogin.initialize({ [provider]: config });
+    let { result: e } = await SocialLogin.login({
+      provider,
+      options:
+        provider === `google`
+          ? { scopes: [`email`, `profile`] }
+          : { permissions: [`email`, `public_profile`] },
+    });
+    return {
+      provider,
+      name: e?.profile?.name ?? ``,
+      email: e?.profile?.email ?? ``,
+    };
+  }
+  return (
+    await new Promise((e) => setTimeout(e, 900)),
+    { provider, name: ``, email: ``, demo: !0 }
+  );
+}
+var GoogleMark = ({ className: e }) =>
+    (0, F.jsxs)(`svg`, {
+      viewBox: `0 0 48 48`,
+      className: e,
+      "aria-hidden": `true`,
+      children: [
+        (0, F.jsx)(`path`, {
+          fill: `#EA4335`,
+          d: `M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z`,
+        }),
+        (0, F.jsx)(`path`, {
+          fill: `#4285F4`,
+          d: `M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z`,
+        }),
+        (0, F.jsx)(`path`, {
+          fill: `#FBBC05`,
+          d: `M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z`,
+        }),
+        (0, F.jsx)(`path`, {
+          fill: `#34A853`,
+          d: `M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z`,
+        }),
+      ],
+    }),
+  FacebookMark = ({ className: e }) =>
+    (0, F.jsx)(`svg`, {
+      viewBox: `0 0 24 24`,
+      className: e,
+      "aria-hidden": `true`,
+      children: (0, F.jsx)(`path`, {
+        fill: `currentColor`,
+        d: `M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07`,
+      }),
+    }),
+  signUpStickers = [
+    { label: `🛡️ Escrow orders`, cls: `left-4 top-5` },
+    {
+      label: `💬 Chats synced`,
+      cls: `right-4 top-12 [animation-delay:600ms]`,
+    },
+    {
+      label: `💖 Wishlist saved`,
+      cls: `left-8 bottom-4 [animation-delay:1200ms]`,
+    },
+  ],
+  SignUpSheet = ({ open: e, onSkip: t, onSignedUp: n }) => {
+    let [r, i] = (0, S.useState)(null),
+      [a, o] = (0, S.useState)(``),
+      s = async (e) => {
+        if (!r) {
+          (i(e), o(``));
+          try {
+            n(await signUpWith(e));
+          } catch {
+            o(
+              `${providerLabels[e]} sign-up didn’t go through. Try again or skip for now.`,
+            );
+          } finally {
+            i(null);
+          }
+        }
+      },
+      c = (e, t, n) =>
+        (0, F.jsxs)(`button`, {
+          type: `button`,
+          onClick: () => s(e),
+          disabled: !!r,
+          className: `w-full h-14 rounded-full font-semibold text-[15px] flex items-center justify-center gap-3 transition active:scale-[0.98] disabled:opacity-60 ${t}`,
+          children: [
+            r === e ? (0, F.jsx)(ve, { className: `w-5 h-5 animate-spin` }) : n,
+            r === e ? `Connecting…` : `Continue with ${providerLabels[e]}`,
+          ],
+        });
+    return (0, F.jsx)(Gt, {
+      open: e,
+      onClose: r ? () => {} : t,
+      label: `Create your Varsity Mart account`,
+      children: (0, F.jsxs)(`div`, {
+        className: `flex-1 overflow-y-auto px-6 pt-2 md:pt-5 pb-[calc(var(--sab)+24px)]`,
+        children: [
+          (0, F.jsxs)(`div`, {
+            className: `flex items-center justify-between h-12`,
+            children: [
+              (0, F.jsxs)(`span`, {
+                className: `font-display text-[22px] font-semibold tracking-tight`,
+                children: [
+                  `Varsity`,
+                  (0, F.jsx)(`span`, {
+                    className: `bg-brand px-1.5 ml-0.5 rounded-md`,
+                    children: `Mart`,
+                  }),
+                ],
+              }),
+              (0, F.jsx)(`button`, {
+                type: `button`,
+                onClick: t,
+                disabled: !!r,
+                className: `text-[14px] font-semibold text-muted hover:text-ink px-2 py-1 disabled:opacity-40`,
+                children: `Skip`,
+              }),
+            ],
+          }),
+          (0, F.jsxs)(`div`, {
+            className: `relative h-40 mt-3 rounded-[32px] bg-brand overflow-hidden`,
+            "aria-hidden": `true`,
+            children: [
+              (0, F.jsx)(`span`, {
+                className: `absolute -right-6 -bottom-8 w-28 h-28 rounded-full border-[14px] border-white/60`,
+              }),
+              (0, F.jsx)(`span`, {
+                className: `absolute right-[104px] top-3 w-8 h-8 rounded-full border-[5px] border-white/90`,
+              }),
+              (0, F.jsx)(`span`, {
+                className: `absolute inset-0 grid place-items-center`,
+                children: (0, F.jsx)(`span`, {
+                  className: `w-20 h-20 rounded-full bg-ink text-brand grid place-items-center ring-4 ring-white/60 animate-pop`,
+                  children: (0, F.jsx)(he, { className: `w-9 h-9` }),
+                }),
+              }),
+              signUpStickers.map((e) =>
+                (0, F.jsx)(
+                  `span`,
+                  {
+                    className: `absolute px-3 py-1.5 rounded-full bg-white text-[12.5px] font-semibold shadow-[0_10px_24px_-12px_rgba(18,19,23,0.5)] animate-float ${e.cls}`,
+                    children: e.label,
+                  },
+                  e.label,
+                ),
+              ),
+            ],
+          }),
+          (0, F.jsxs)(`h2`, {
+            className: `font-display text-[32px] leading-[1.05] font-semibold tracking-tight mt-6`,
+            children: [`Create your`, (0, F.jsx)(`br`, {}), `free account`],
+          }),
+          (0, F.jsx)(`p`, {
+            className: `text-[15px] text-muted mt-2 leading-relaxed`,
+            children: `One tap keeps your wishlist, chats and Escrow orders safe on any device.`,
+          }),
+          (0, F.jsxs)(`div`, {
+            className: `mt-6 space-y-3`,
+            children: [
+              c(
+                `google`,
+                `bg-white text-ink border border-line hover:bg-mist shadow-[0_1px_2px_rgba(18,19,23,0.05)]`,
+                (0, F.jsx)(GoogleMark, { className: `w-5 h-5` }),
+              ),
+              c(
+                `facebook`,
+                `bg-[#1877F2] text-white hover:bg-[#166FE5]`,
+                (0, F.jsx)(FacebookMark, { className: `w-5 h-5` }),
+              ),
+            ],
+          }),
+          a &&
+            (0, F.jsx)(`p`, {
+              role: `alert`,
+              className: `text-[13px] text-rose-600 text-center mt-3`,
+              children: a,
+            }),
+          (0, F.jsx)(`p`, {
+            className: `text-[12px] text-muted text-center mt-5 leading-relaxed`,
+            children: `We only use your name and email to set up your profile. Skipped? Sign up any time from the Me tab.`,
+          }),
+        ],
+      }),
+    });
+  };
 function Yn() {
   let [e, t] = (0, S.useState)(() => !qn()),
     [n, r] = (0, S.useState)(`marketplace`),
@@ -21207,6 +21462,8 @@ function Yn() {
     [ye, be] = (0, S.useState)(!1),
     [xe, k] = (0, S.useState)(!1),
     [A, Se] = (0, S.useState)(null),
+    [account, setAccount] = (0, S.useState)(readAccount),
+    [signUpOpen, setSignUpOpen] = (0, S.useState)(!1),
     Ce = (0, S.useRef)(void 0),
     j = (0, S.useCallback)((e) => {
       (Se(e),
@@ -21220,13 +21477,32 @@ function Yn() {
     n !== `sellerDashboard` && k(!1);
   }, [n]),
     (0, S.useEffect)(() => {
-      document.body.style.overflow = e ? `hidden` : ``;
+      // Unlock in cleanup so the sign-up sheet, which opens in the same
+      // render the intro closes, can keep its own scroll lock.
+      if (e)
+        return (
+          (document.body.style.overflow = `hidden`),
+          () => {
+            document.body.style.overflow = ``;
+          }
+        );
     }, [e]));
   let we = () => {
       try {
         localStorage.setItem(Kn, `1`);
       } catch {}
-      t(!1);
+      (t(!1), account || setSignUpOpen(!0));
+    },
+    onSignedUp = (e) => {
+      (writeAccount(e),
+        setAccount(e),
+        setSignUpOpen(!1),
+        j(
+          `Welcome! Signed up with ${providerLabels[e.provider]} 🎉${e.demo ? ` (demo)` : ``}`,
+        ));
+    },
+    signOut = () => {
+      (writeAccount(null), setAccount(null), j(`Signed out`));
     },
     N = (e, t, n = 1) => {
       (T((r) =>
@@ -21462,25 +21738,27 @@ function Yn() {
     (st.current = () =>
       e
         ? !1
-        : oe
-          ? (O(null), !0)
-          : pe
-            ? (me(!1), !0)
-            : le
-              ? (ue(null), !0)
-              : de
-                ? (fe(!1), !0)
-                : he
-                  ? (ge(!1), !0)
-                  : _e
-                    ? (ve(!1), !0)
-                    : ye
-                      ? (be(!1), !0)
-                      : x
-                        ? (ee(!1), !0)
-                        : n === `sellerDashboard`
-                          ? (M(`profile`), !0)
-                          : n !== `marketplace` && (M(`marketplace`), !0)),
+        : signUpOpen
+          ? (setSignUpOpen(!1), !0)
+          : oe
+            ? (O(null), !0)
+            : pe
+              ? (me(!1), !0)
+              : le
+                ? (ue(null), !0)
+                : de
+                  ? (fe(!1), !0)
+                  : he
+                    ? (ge(!1), !0)
+                    : _e
+                      ? (ve(!1), !0)
+                      : ye
+                        ? (be(!1), !0)
+                        : x
+                          ? (ee(!1), !0)
+                          : n === `sellerDashboard`
+                            ? (M(`profile`), !0)
+                            : n !== `marketplace` && (M(`marketplace`), !0)),
     (0, S.useEffect)(() => Tt(() => st.current()), []),
     (0, F.jsxs)(`div`, {
       className: `min-h-dvh bg-paper text-ink pb-[calc(var(--sab)+116px)]`,
@@ -21582,6 +21860,9 @@ function Yn() {
                 onOpenBot: () => ve(!0),
                 onOpenEscrowInfo: () => ge(!0),
                 onReplayIntro: () => t(!0),
+                account: account,
+                onOpenSignUp: () => setSignUpOpen(!0),
+                onSignOut: signOut,
               }),
             n === `sellerDashboard` &&
               (0, F.jsx)(Dn, {
@@ -21669,6 +21950,11 @@ function Yn() {
         }),
         (0, F.jsx)(Hn, { isOpen: _e, onClose: () => ve(!1), userRole: i }),
         e && (0, F.jsx)(Qt, { onDone: we }),
+        (0, F.jsx)(SignUpSheet, {
+          open: signUpOpen,
+          onSkip: () => setSignUpOpen(!1),
+          onSignedUp: onSignedUp,
+        }),
       ],
     })
   );

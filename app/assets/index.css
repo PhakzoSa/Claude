@@ -3222,3 +3222,84 @@
     transform: translateY(-4px);
   }
 }
+
+/* Sign-up sheet and floating chat window (generated with Tailwind v4.1 from the classes added in app/assets/index.js) */
+@layer theme {
+  :root,
+  :host {
+    --container-2xl: 42rem;
+  }
+}
+@layer utilities {
+  .top-12 {
+    top: calc(var(--spacing) * 12);
+  }
+  .-right-6 {
+    right: calc(var(--spacing) * -6);
+  }
+  .right-4 {
+    right: calc(var(--spacing) * 4);
+  }
+  .-bottom-8 {
+    bottom: calc(var(--spacing) * -8);
+  }
+  .bottom-4 {
+    bottom: calc(var(--spacing) * 4);
+  }
+  .left-8 {
+    left: calc(var(--spacing) * 8);
+  }
+  .max-w-2xl {
+    max-width: var(--container-2xl);
+  }
+  .border-white\/60 {
+    border-color: #fff9;
+  }
+  @supports (color: color-mix(in lab, red, red)) {
+    .border-white\/60 {
+      border-color: color-mix(in oklab, var(--color-white) 60%, transparent);
+    }
+  }
+  .bg-\[\#1877F2\] {
+    background-color: #1877f2;
+  }
+  .px-\[6\%\] {
+    padding-inline: 6%;
+  }
+  .\[animation-delay\:600ms\] {
+    animation-delay: 0.6s;
+  }
+  .\[animation-delay\:1200ms\] {
+    animation-delay: 1.2s;
+  }
+  @media (hover: hover) {
+    .hover\:bg-\[\#166FE5\]:hover {
+      background-color: #166fe5;
+    }
+  }
+  @media (min-width: 48rem) {
+    .md\:pt-5 {
+      padding-top: calc(var(--spacing) * 5);
+    }
+  }
+  @media not all and (min-width: 48rem) {
+    .max-md\:inset-x-\[max\(4\%\,calc\(50\%-280px\)\)\] {
+      inset-inline: max(4%, 50% - 280px);
+    }
+  }
+  @media not all and (min-width: 48rem) {
+    .max-md\:top-\[calc\(var\(--sat\)\+5dvh\)\] {
+      top: calc(var(--sat) + 5dvh);
+    }
+  }
+  @media not all and (min-width: 48rem) {
+    .max-md\:bottom-\[calc\(var\(--sab\)\+2\.5dvh\)\] {
+      bottom: calc(var(--sab) + 2.5dvh);
+    }
+  }
+  @media not all and (min-width: 48rem) {
+    .max-md\:rounded-\[32px\] {
+      border-radius: 32px;
+    }
+  }
+}
