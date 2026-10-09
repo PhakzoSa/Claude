@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Varsity Mart – What's new</title>
+<style>
+  @font-face { font-family: Outfit; src: url(../../app/assets/outfit-latin-wght-normal-Bc-8i84L.woff2) format("woff2"); font-weight: 100 900; }
+  @font-face { font-family: Jakarta; src: url(../../app/assets/plus-jakarta-sans-latin-wght-normal-eXO_dkmS.woff2) format("woff2"); font-weight: 200 800; }
+  :root { --ink: #121317; --paper: #f5f7fa; --brand: #aedff7; --brand-deep: #1c6fa3; --brand-soft: #e2f3fc; --muted: #6b7180; --mint: #d8f4e6; --mint-ink: #19734a; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--paper); color: var(--ink); font-family: Jakarta, system-ui, sans-serif; }
+  .abs { position: absolute; }
+  .display { font-family: Outfit, sans-serif; font-weight: 600; letter-spacing: -0.03em; }
+  .scene { position: absolute; inset: 0; opacity: 0; }
+  .blob { position: absolute; right: -180px; top: -140px; width: 1100px; height: 1150px; }
+  .ring { position: absolute; border-radius: 50%; border: 18px solid #fff; opacity: .85; }
+  .icon { width: 220px; height: 220px; border-radius: 56px; box-shadow: 0 30px 60px -30px rgba(18,19,23,.55); }
+  .chip { display: inline-flex; align-items: center; gap: 12px; padding: 18px 30px; border-radius: 999px; background: #fff; font-weight: 700; font-size: 30px; box-shadow: 0 18px 36px -22px rgba(18,19,23,.45); }
+  .eyebrow { font-weight: 800; font-size: 24px; letter-spacing: .14em; text-transform: uppercase; color: var(--brand-deep); }
+  h2 { font-size: 92px; line-height: 1.02; }
+  .bullet { display: flex; align-items: center; gap: 22px; font-size: 32px; font-weight: 600; margin-top: 26px; }
+  .tick { width: 54px; height: 54px; border-radius: 50%; background: var(--ink); color: var(--brand); display: grid; place-items: center; font-size: 28px; flex: none; }
+  .phone { position: absolute; width: 400px; height: 812px; padding: 12px; border-radius: 60px; background: var(--ink); box-shadow: 0 50px 80px -40px rgba(18,19,23,.7); }
+  .screen { position: relative; width: 100%; height: 100%; border-radius: 48px; overflow: hidden; background: #fff; }
+  .screen img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .tap { position: absolute; width: 70px; height: 70px; margin: -35px 0 0 -35px; border-radius: 50%; background: rgba(18,19,23,.3); border: 3px solid #fff; opacity: 0; }
+  .tag { position: absolute; white-space: nowrap; padding: 12px 26px; border-radius: 999px; font-weight: 800; font-size: 26px; }
+  .note { position: absolute; padding: 12px 22px; border-radius: 18px; background: var(--ink); color: #fff; font-weight: 700; font-size: 24px; white-space: nowrap; box-shadow: 0 14px 30px -16px rgba(18,19,23,.8); }
+  .gap { position: absolute; height: 0; border-top: 4px solid #e2416b; }
+  .gap::before, .gap::after { content: ""; position: absolute; top: -14px; width: 4px; height: 24px; background: #e2416b; }
+  .gap::before { left: 0; } .gap::after { right: 0; }
+  .outline { position: absolute; border: 4px dashed #e2416b; border-radius: 30px; }
+  .badge { width: 600px; padding: 34px 40px; border-radius: 40px; background: #fff; display: flex; align-items: center; gap: 30px; box-shadow: 0 30px 60px -36px rgba(18,19,23,.5); }
+  .badge b { display: block; font-family: Outfit, sans-serif; font-size: 46px; letter-spacing: -.02em; }
+  .badge span { color: var(--muted); font-size: 26px; }
+  .glyph { width: 104px; height: 104px; border-radius: 30px; display: grid; place-items: center; font-family: Outfit, sans-serif; font-weight: 700; font-size: 32px; flex: none; }
+  .browser { position: absolute; width: 1000px; border-radius: 26px; background: #fff; box-shadow: 0 50px 80px -40px rgba(18,19,23,.55); overflow: hidden; }
+  .browser .bar { height: 44px; background: var(--ink); display: flex; gap: 10px; align-items: center; padding-left: 20px; }
+  .browser .bar i { width: 14px; height: 14px; border-radius: 50%; background: #ffffff55; }
+  .browser img { display: block; width: 100%; }
+</style>
+</head>
+<body data-duration="27000">
+
+<svg class="blob" viewBox="0 0 400 420" preserveAspectRatio="none" aria-hidden="true" id="blob">
+  <path fill="#aedff7" d="M60 0H400V330C400 365 370 386 338 372C322 405 280 413 255 390C232 421 182 423 162 395C135 416 92 411 80 381C45 389 12 366 16 332C2 322 0 302 0 282V60C0 27 27 0 60 0Z"/>
+</svg>
+<div class="ring" id="ring1" style="width:150px;height:150px;right:120px;top:80px"></div>
+<div class="ring" id="ring2" style="width:80px;height:80px;right:380px;top:50px;border-width:11px"></div>
+
+<!-- 1 · Title -->
+<section class="scene" id="s1">
+  <img class="icon abs" id="s1-icon" src="../../app/favicon.svg" alt="" style="left:160px;top:250px">
+  <h1 class="display abs" id="s1-title" style="left:160px;top:500px;font-size:150px">Varsity <span style="background:var(--brand);padding:0 18px;border-radius:24px">Mart</span></h1>
+  <p class="abs" id="s1-sub" style="left:166px;top:700px;font-size:40px;color:var(--muted);font-weight:600">What's new in the campus marketplace</p>
+  <div class="abs" style="left:160px;top:800px;display:flex;gap:20px">
+    <span class="chip" id="s1-c1">🔐 One-tap sign-up</span>
+    <span class="chip" id="s1-c2">💬 Roomier chats</span>
+    <span class="chip" id="s1-c3">📱 Android + iPhone</span>
+  </div>
+  <div class="phone" id="s1-phone" style="left:1300px;top:150px;transform:rotate(6deg)"><div class="screen"><img src="../../docs/media/screenshots/after-01-tutorial.png" alt=""></div></div>
+</section>
+
+<!-- 2 · Sign-up -->
+<section class="scene" id="s2">
+  <div class="abs" style="left:160px;top:230px;width:900px">
+    <p class="eyebrow" id="s2-eyebrow">New · Sign-up</p>
+    <h2 class="display" id="s2-title" style="margin-top:22px">Skip the tour.<br>Sign up in one tap.</h2>
+    <div class="bullet" id="s2-b1" style="margin-top:56px"><span class="tick">✓</span>Pops up right after the tutorial</div>
+    <div class="bullet" id="s2-b2"><span class="tick">✓</span>Continue with Google or Facebook</div>
+    <div class="bullet" id="s2-b3"><span class="tick">✓</span>Skippable – sign up later from the Me tab</div>
+  </div>
+  <div class="phone" id="s2-phone" style="left:1240px;top:134px">
+    <div class="screen">
+      <img id="s2-a" src="../../docs/media/screenshots/after-01-tutorial.png" alt="">
+      <img id="s2-b" src="../../docs/media/screenshots/after-02-signup.png" alt="">
+      <img id="s2-c" src="../../docs/media/screenshots/after-03-connecting.png" alt="">
+      <img id="s2-d" src="../../docs/media/screenshots/after-04-welcome.png" alt="">
+      <span class="tap" id="s2-tap1" style="left:88%;top:4%"></span>
+      <span class="tap" id="s2-tap2" style="left:50%;top:78.6%"></span>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · Chat -->
+<section class="scene" id="s3">
+  <div class="abs" style="left:0;right:0;top:70px;text-align:center">
+    <p class="eyebrow" id="s3-eyebrow">New · Chat</p>
+    <h2 class="display" id="s3-title" style="margin-top:14px;font-size:76px">Chats that don't swallow the screen</h2>
+  </div>
+  <div class="phone" id="s3-before" style="left:470px;top:250px;transform:scale(.92);transform-origin:top center">
+    <div class="screen">
+      <img id="s3-b1" src="../../docs/media/screenshots/before-06-bot.png" alt="">
+      <img id="s3-b2" src="../../docs/media/screenshots/before-07-conversation.png" alt="">
+    </div>
+    <span class="tag" style="left:50%;top:-34px;transform:translateX(-50%);background:#e4e8ee;color:var(--muted)">Before · v1.0</span>
+  </div>
+  <div class="phone" id="s3-after" style="left:1050px;top:250px;transform:scale(.92);transform-origin:top center">
+    <div class="screen">
+      <img id="s3-a1" src="../../docs/media/screenshots/after-06-bot.png" alt="">
+      <img id="s3-a2" src="../../docs/media/screenshots/after-07-conversation.png" alt="">
+      <div class="outline" id="s3-outline" style="left:3.4%;top:4.6%;width:93%;height:93%"></div>
+      <div class="gap" id="s3-gap1" style="left:3.9%;width:5.8%;top:92.8%"></div>
+      <div class="gap" id="s3-gap2" style="left:90.3%;width:5.8%;top:92.8%"></div>
+    </div>
+    <span class="tag" style="left:50%;top:-34px;transform:translateX(-50%);background:var(--brand);color:var(--ink)">After</span>
+    <span class="note" id="s3-n1" style="left:410px;top:120px">Floating card</span>
+    <span class="note" id="s3-n2" style="left:410px;top:690px">Centred · 6% side padding</span>
+  </div>
+  <span class="note" id="s3-n0" style="left:96px;top:690px;background:#fff;color:var(--ink)">Edge-to-edge, full screen</span>
+</section>
+
+<!-- 4 · Platforms -->
+<section class="scene" id="s4">
+  <div class="abs" style="left:160px;top:200px">
+    <p class="eyebrow" id="s4-eyebrow">Download</p>
+    <h2 class="display" id="s4-title" style="margin-top:22px">Android<br>and iPhone</h2>
+    <div class="badge" id="s4-android" style="margin-top:60px"><span class="glyph" style="background:var(--mint);color:var(--mint-ink)">APK</span><div><b>Android APK</b><span>Install straight on the phone</span></div></div>
+    <div class="badge" id="s4-ios" style="margin-top:24px"><span class="glyph" style="background:var(--brand-soft);color:var(--brand-deep)">iOS</span><div><b>iPhone build</b><span>Built on macOS by GitHub Actions</span></div></div>
+  </div>
+  <div class="browser" id="s4-browser" style="left:820px;top:250px">
+    <div class="bar"><i></i><i></i><i></i></div>
+    <img src="../../docs/media/screenshots/after-08-desktop-signup.png" alt="">
+  </div>
+</section>
+
+<!-- 5 · Outro -->
+<section class="scene" id="s5">
+  <div class="abs" style="left:0;right:0;top:250px;display:flex;flex-direction:column;align-items:center;text-align:center">
+    <img class="icon" id="s5-icon" src="../../app/favicon.svg" alt="">
+    <h2 class="display" id="s5-title" style="margin-top:44px;font-size:110px">Try the preview</h2>
+    <p id="s5-link" style="margin-top:30px" class="chip">⬇️ github.com/PhakzoSa/Claude/releases</p>
+    <p id="s5-foot" style="margin-top:40px;font-size:30px;color:var(--muted);font-weight:600">Varsity Mart · Made for CPUT students 💙</p>
+  </div>
+</section>
+
+<script>
+  const T = Number(document.body.dataset.duration);
+  const ease = 'cubic-bezier(.2,.9,.3,1)';
+  const $ = (id) => document.getElementById(id);
+  // One animation per element spanning the whole video, so every frame is a
+  // pure function of time: steps = [[ms, keyframe], ...].
+  function track(id, steps, easing = ease) {
+    const frames = [{ ...steps[0][1], offset: 0, easing: 'linear' }];
+    for (const [t, kf] of steps) frames.push({ ...kf, offset: Math.min(t / T, 1), easing });
+    frames.push({ ...steps[steps.length - 1][1], offset: 1 });
+    $(id).animate(frames, { duration: T, fill: 'both' });
+  }
+  const show = (id, a, b, from = 'translateY(40px)', to = 'none', d = 600) =>
+    track(id, [[a, { opacity: 0, transform: from }], [a + d, { opacity: 1, transform: to }], [b, { opacity: 1, transform: to }], [b + 400, { opacity: 0, transform: to }]]);
+  const scene = (id, a, b) => track(id, [[a, { opacity: 0 }], [a + 400, { opacity: 1 }], [b - 400, { opacity: 1 }], [b, { opacity: 0 }]], 'ease-in-out');
+  const tap = (id, t) => track(id, [[t, { opacity: 0, transform: 'scale(.4)' }], [t + 120, { opacity: 1, transform: 'scale(1)' }], [t + 520, { opacity: 0, transform: 'scale(1.9)' }]], 'ease-out');
+  const swap = (id, t, from = 'none') => track(id, [[t, { opacity: 0, transform: from }], [t + 450, { opacity: 1, transform: 'none' }]]);
+
+  // Ambient motion
+  track('blob', [[0, { transform: 'translate(0,0) scale(1)' }], [T, { transform: 'translate(-60px,30px) scale(1.06)' }]], 'linear');
+  track('ring1', [[0, { transform: 'translateY(0)' }], [T, { transform: 'translateY(90px)' }]], 'linear');
+  track('ring2', [[0, { transform: 'translate(0,0)' }], [T, { transform: 'translate(-70px,40px)' }]], 'linear');
+
+  // 1 · Title 0–4.2s
+  scene('s1', 0, 4200);
+  track('s1-icon', [[150, { opacity: 0, transform: 'scale(.5) rotate(-12deg)' }], [750, { opacity: 1, transform: 'none' }]], 'cubic-bezier(.2,.9,.3,1.35)');
+  show('s1-title', 550, 3800);
+  show('s1-sub', 850, 3800);
+  show('s1-c1', 1200, 3800, 'scale(.6)', 'none', 450);
+  show('s1-c2', 1400, 3800, 'scale(.6)', 'none', 450);
+  show('s1-c3', 1600, 3800, 'scale(.6)', 'none', 450);
+  show('s1-phone', 700, 3800, 'translateY(240px) rotate(14deg)', 'rotate(6deg)', 900);
+
+  // 2 · Sign-up 4–11.8s
+  scene('s2', 4000, 11800);
+  show('s2-eyebrow', 4300, 11400);
+  show('s2-title', 4450, 11400);
+  show('s2-b1', 5100, 11400, 'translateX(-40px)');
+  show('s2-b2', 5500, 11400, 'translateX(-40px)');
+  show('s2-b3', 5900, 11400, 'translateX(-40px)');
+  show('s2-phone', 4300, 11400, 'translateY(220px)', 'none', 800);
+  tap('s2-tap1', 6100);
+  swap('s2-b', 6450, 'translateY(70%)');
+  tap('s2-tap2', 8300);
+  swap('s2-c', 8500);
+  swap('s2-d', 9500);
+
+  // 3 · Chat 11.6–20.2s
+  scene('s3', 11600, 20200);
+  show('s3-eyebrow', 11900, 19800);
+  show('s3-title', 12050, 19800);
+  show('s3-before', 12300, 19800, 'translateY(260px) scale(.92)', 'scale(.92)', 800);
+  show('s3-after', 12550, 19800, 'translateY(260px) scale(.92)', 'scale(.92)', 800);
+  show('s3-n0', 13500, 19800, 'scale(.7)', 'none', 400);
+  show('s3-outline', 14000, 15500, 'scale(1.04)', 'none', 400);
+  show('s3-n1', 14100, 19800, 'scale(.7)', 'none', 400);
+  show('s3-gap1', 14700, 19800, 'scaleX(0)', 'none', 400);
+  show('s3-gap2', 14800, 19800, 'scaleX(0)', 'none', 400);
+  show('s3-n2', 14900, 19800, 'scale(.7)', 'none', 400);
+  swap('s3-b2', 16300);
+  swap('s3-a2', 16300);
+
+  // 4 · Platforms 20–24.2s
+  scene('s4', 20000, 24200);
+  show('s4-eyebrow', 20250, 23800);
+  show('s4-title', 20400, 23800);
+  show('s4-android', 20800, 23800, 'translateY(40px) scale(.9)');
+  show('s4-ios', 21100, 23800, 'translateY(40px) scale(.9)');
+  show('s4-browser', 20600, 23800, 'translateX(200px)', 'none', 900);
+
+  // 5 · Outro 24–27s
+  scene('s5', 24000, 27400);
+  track('s5-icon', [[24150, { opacity: 0, transform: 'scale(.5)' }], [24700, { opacity: 1, transform: 'none' }]], 'cubic-bezier(.2,.9,.3,1.35)');
+  show('s5-title', 24450, 27400);
+  show('s5-link', 24750, 27400, 'scale(.8)');
+  show('s5-foot', 25050, 27400);
+</script>
+</body>
+</html>
