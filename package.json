@@ -1,0 +1,20 @@
+{
+  "name": "varsity-mart",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Varsity Mart campus marketplace (Capacitor app for Android and iOS)",
+  "scripts": {
+    "serve": "npx --yes serve app -l 5173",
+    "ios:sync": "cap sync ios",
+    "ios:open": "cap open ios",
+    "media": "node tools/capture-media.js"
+  },
+  "dependencies": {
+    "@capacitor/app": "8.1.2",
+    "@capacitor/core": "8.5.3",
+    "@capacitor/ios": "8.5.3"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.5.3"
+  }
+}

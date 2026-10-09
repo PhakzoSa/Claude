@@ -1,0 +1,78 @@
+name: Build iOS app
+
+# Builds the Capacitor iOS project on macOS and publishes a downloadable
+# pre-release with:
+#   VarsityMart-unsigned.ipa      iPhone build, re-sign with Sideloadly/AltStore/Xcode
+#   VarsityMart-simulator.zip     App.app for the iOS Simulator
+#   VarsityMart-preview.apk       Android build from release/
+on:
+  push:
+    paths:
+      - app/**
+      - ios/**
+      - release/**
+      - package.json
+      - package-lock.json
+      - capacitor.config.json
+      - .github/workflows/ios.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  ios:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npx cap sync ios
+
+      - name: Build for iPhone (unsigned)
+        run: |
+          xcodebuild -project ios/App/App.xcodeproj -scheme App \
+            -configuration Release -sdk iphoneos \
+            -destination 'generic/platform=iOS' -derivedDataPath build/device \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            build
+          mkdir -p dist/Payload
+          cp -R build/device/Build/Products/Release-iphoneos/App.app dist/Payload/
+          (cd dist && zip -qry VarsityMart-unsigned.ipa Payload && rm -rf Payload)
+
+      - name: Build for iOS Simulator
+        run: |
+          xcodebuild -project ios/App/App.xcodeproj -scheme App \
+            -configuration Debug -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' -derivedDataPath build/sim \
+            CODE_SIGNING_ALLOWED=NO build
+          (cd build/sim/Build/Products/Debug-iphonesimulator && zip -qry "$GITHUB_WORKSPACE/dist/VarsityMart-simulator.zip" App.app)
+
+      - run: cp release/VarsityMart-preview.apk dist/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: VarsityMart-builds
+          path: dist/*
+
+      - name: Publish downloadable pre-release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: preview-${{ github.run_number }}
+          target_commitish: ${{ github.sha }}
+          name: Varsity Mart preview ${{ github.run_number }}
+          prerelease: true
+          files: dist/*
+          body: |
+            Preview build of `${{ github.ref_name }}` at ${{ github.sha }}.
+
+            **Android** – `VarsityMart-preview.apk`: uninstall Varsity Mart v1.0 first (different signing key), then open the APK on the phone.
+
+            **iPhone** – `VarsityMart-unsigned.ipa`: Apple only runs signed apps, so install it with Sideloadly or AltStore (signs it with your Apple ID), or build `ios/` in Xcode. App Store / TestFlight needs an Apple Developer account.
+
+            **iOS Simulator** – unzip `VarsityMart-simulator.zip` and drag `App.app` onto a running simulator.

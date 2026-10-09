@@ -1,0 +1,18 @@
+{
+	"appId": "com.varsitymart.app",
+	"appName": "Varsity Mart",
+	"webDir": "app",
+	"android": {
+		"backgroundColor": "#F5F7FA"
+	},
+	"ios": {
+		"backgroundColor": "#F5F7FA"
+	},
+	"plugins": {
+		"SystemBars": {
+			"insetsHandling": "css",
+			"style": "LIGHT",
+			"initialViewportFitValueHint": "cover"
+		}
+	}
+}
